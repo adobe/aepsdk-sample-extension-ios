@@ -1,0 +1,6 @@
+framework module Pods_AEPSampleExtensionObjC_AEPSampleExtensionObjCTests {
+  umbrella header "Pods-AEPSampleExtensionObjC-AEPSampleExtensionObjCTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_AEPSampleExtensionSwift_AEPSampleExtensionSwiftTests : NSObject
+@end
+@implementation PodsDummy_Pods_AEPSampleExtensionSwift_AEPSampleExtensionSwiftTests
+@end

@@ -1,6 +1,0 @@
-framework module Pods_AEPSampleExtensionObjC {
-  umbrella header "Pods-AEPSampleExtensionObjC-umbrella.h"
-
-  export *
-  module * { export * }
-}

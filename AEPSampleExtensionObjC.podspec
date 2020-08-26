@@ -12,7 +12,7 @@ AEPSampleExtensionObjC
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files          = 'ObjC/AEPSampleExtensionObjC/*.{h,m}'
+  s.source_files          = 'ObjC/AEPSampleExtensionObjC/AEPSampleExtensionObjC/*.{h,m}'
 
   s.pod_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
 

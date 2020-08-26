@@ -12,9 +12,8 @@ AEPSampleExtensionObjC
 
   s.ios.deployment_target = '10.0'
 
-  s.source_files          = 'AEPSampleExtensionObjC/**/*.swift'
+  s.source_files          = 'AEPSampleExtensionObjC/**/*.{h,m}'
 
-  s.swift_version = '5.0'
   s.pod_target_xcconfig = { 'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES' }
 
   s.dependency 'AEPCore'

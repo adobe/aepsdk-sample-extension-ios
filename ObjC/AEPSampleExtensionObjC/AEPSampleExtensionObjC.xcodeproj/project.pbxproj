@@ -471,6 +471,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF7CC61F209AD4D702A10E05 /* Pods-AEPSampleExtensionObjC.debug.xcconfig */;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -498,6 +499,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0E0665D7EA3844DAD333E606 /* Pods-AEPSampleExtensionObjC.release.xcconfig */;
 			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

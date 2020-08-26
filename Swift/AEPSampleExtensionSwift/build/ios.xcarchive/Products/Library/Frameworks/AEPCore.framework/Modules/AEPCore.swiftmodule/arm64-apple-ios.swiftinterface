@@ -1,0 +1,217 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AEPCore
+@_exported import AEPCore
+import AEPServices
+import Foundation
+import Swift
+@objc public enum AEPError : Swift.Int, Swift.Error {
+  public typealias RawValue = Swift.Int
+  case unexpected = 0
+  case callbackTimeout = 1
+  case callbackNil = 2
+  case none = 3
+  case errorExtensionNotInitialized = 11
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+  public static var _nsErrorDomain: Swift.String {
+    get
+  }
+}
+@objc(AEPEvent) public class Event : ObjectiveC.NSObject, Swift.Codable {
+  @objc final public let name: Swift.String
+  @objc public var id: Foundation.UUID {
+    get
+    }
+  @objc final public let type: Swift.String
+  @objc final public let source: Swift.String
+  @objc public var data: [Swift.String : Any]? {
+    get
+    }
+  @objc public var timestamp: Foundation.Date {
+    get
+    }
+  @objc final public let responseID: Foundation.UUID?
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+  @objc convenience public init(name: Swift.String, type: Swift.String, source: Swift.String, data: [Swift.String : Any]?)
+  public func createResponseEvent(name: Swift.String, type: Swift.String, source: Swift.String, data: [Swift.String : Any]?) -> AEPCore.Event
+  required public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+  @objc override dynamic public init()
+  @objc deinit
+}
+public typealias EventListener = (AEPCore.Event) -> Swift.Void
+public typealias EventResponseListener = (AEPCore.Event?) -> Swift.Void
+public typealias SharedStateResolver = ([Swift.String : Any]?) -> Swift.Void
+public typealias EventHandlerMapping = (event: AEPCore.Event, handler: (AEPCore.Event) -> (Swift.Bool))
+public typealias EventPreprocessor = (AEPCore.Event) -> AEPCore.Event
+public enum EventHubError : Swift.Error {
+  case invalidExtensionName
+  case duplicateExtensionName
+  case extensionInitializationFailure
+  case unknown
+  public static func == (a: AEPCore.EventHubError, b: AEPCore.EventHubError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension EventHubError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum EventSource {
+  public static let none: Swift.String
+  public static let os: Swift.String
+  public static let requestContent: Swift.String
+  public static let requestIdentity: Swift.String
+  public static let requestProfile: Swift.String
+  public static let requestReset: Swift.String
+  public static let responseContent: Swift.String
+  public static let responseIdentity: Swift.String
+  public static let responseProfile: Swift.String
+  public static let sharedState: Swift.String
+  public static let wildcard: Swift.String
+}
+public enum EventType {
+  public static let acquisition: Swift.String
+  public static let analytics: Swift.String
+  public static let audienceManager: Swift.String
+  public static let campaign: Swift.String
+  public static let configuration: Swift.String
+  public static let custom: Swift.String
+  public static let hub: Swift.String
+  public static let identity: Swift.String
+  public static let lifecycle: Swift.String
+  public static let location: Swift.String
+  public static let pii: Swift.String
+  public static let rulesEngine: Swift.String
+  public static let signal: Swift.String
+  public static let system: Swift.String
+  public static let target: Swift.String
+  public static let userProfile: Swift.String
+  public static let places: Swift.String
+  public static let genericTrack: Swift.String
+  public static let genericLifecycle: Swift.String
+  public static let genericIdentity: Swift.String
+  public static let genericPii: Swift.String
+  public static let genericData: Swift.String
+  public static let wildcard: Swift.String
+}
+extension Extension {
+  public static func registerExtension()
+}
+@objc(AEPExtension) public protocol Extension {
+  @objc var name: Swift.String { get }
+  @objc var friendlyName: Swift.String { get }
+  @objc static var extensionVersion: Swift.String { get }
+  @objc var metadata: [Swift.String : Swift.String]? { get }
+  @objc var runtime: AEPCore.ExtensionRuntime { get }
+  @objc func onRegistered()
+  @objc func onUnregistered()
+  @objc func readyForEvent(_ event: AEPCore.Event) -> Swift.Bool
+  @objc init?(runtime: AEPCore.ExtensionRuntime)
+}
+extension Extension {
+  public func registerListener(type: Swift.String, source: Swift.String, listener: @escaping AEPCore.EventListener)
+  public func dispatch(event: AEPCore.Event)
+  public func createSharedState(data: [Swift.String : Any], event: AEPCore.Event?)
+  public func createPendingSharedState(event: AEPCore.Event?) -> AEPCore.SharedStateResolver
+  public func getSharedState(extensionName: Swift.String, event: AEPCore.Event?) -> AEPCore.SharedStateResult?
+  public func readyForEvent(_: AEPCore.Event) -> Swift.Bool
+  public func startEvents()
+  public func stopEvents()
+}
+@objc(AEPExtensionRuntime) public protocol ExtensionRuntime {
+  @objc func registerListener(type: Swift.String, source: Swift.String, listener: @escaping AEPCore.EventListener)
+  @objc func dispatch(event: AEPCore.Event)
+  @objc func createSharedState(data: [Swift.String : Any], event: AEPCore.Event?)
+  @objc func createPendingSharedState(event: AEPCore.Event?) -> AEPCore.SharedStateResolver
+  @objc func getSharedState(extensionName: Swift.String, event: AEPCore.Event?) -> AEPCore.SharedStateResult?
+  @objc func startEvents()
+  @objc func stopEvents()
+}
+extension HitQueuing {
+  public func handlePrivacyChange(status: AEPCore.PrivacyStatus)
+}
+@objc extension MobileCore {
+  @objc public static func configureWith(appId: Swift.String)
+  @objc public static func configureWith(filePath: Swift.String)
+  @objc(updateConfiguration:) public static func updateConfigurationWith(configDict: [Swift.String : Any])
+  @objc(setPrivacy:) public static func setPrivacy(status: AEPCore.PrivacyStatus)
+  @objc(getPrivacyStatus:) public static func getPrivacyStatus(completion: @escaping (AEPCore.PrivacyStatus) -> Swift.Void)
+  @objc(getSdkIdentities:) public static func getSdkIdentities(completion: @escaping (Swift.String?, AEPCore.AEPError) -> Swift.Void)
+}
+@objc extension MobileCore {
+  @objc(lifecycleStart:) public static func lifecycleStart(additionalContextData: [Swift.String : Any]?)
+  @objc public static func lifecyclePause()
+}
+@objc(AEPCore) final public class MobileCore : ObjectiveC.NSObject {
+  @objc public static var extensionVersion: Swift.String {
+    @objc get
+  }
+  @objc(registerExtensions:completion:) public static func registerExtensions(_ extensions: [AEPCore.Extension.Type], _ completion: (() -> Swift.Void)? = nil)
+  @objc(dispatch:) public static func dispatch(event: AEPCore.Event)
+  @objc(dispatch:responseCallback:) public static func dispatch(event: AEPCore.Event, responseCallback: @escaping (AEPCore.Event?) -> Swift.Void)
+  @objc(start:) public static func start(_ completion: @escaping (() -> Swift.Void))
+  @objc(setAdvertisingIdentifier:) public static func setAdvertisingIdentifier(adId: Swift.String?)
+  @objc(setPushIdentifier:) public static func setPushIdentifier(deviceToken: Foundation.Data?)
+  @objc(setWrapperType:) public static func setWrapperType(type: AEPCore.WrapperType)
+  @objc(setLogLevel:) public static func setLogLevel(level: AEPServices.LogLevel)
+  @objc(setAppGroup:) public static func setAppGroup(group: Swift.String?)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(AEPPrivacyStatus) public enum PrivacyStatus : Swift.Int, Swift.RawRepresentable, Swift.Codable {
+  case optedIn = 0
+  case optedOut = 1
+  case unknown = 2
+  public typealias RawValue = Swift.String
+  public var rawValue: AEPCore.PrivacyStatus.RawValue {
+    get
+  }
+  public init?(rawValue: AEPCore.PrivacyStatus.RawValue)
+}
+@objc(AEPSharedStateStatus) public enum SharedStateStatus : Swift.Int {
+  case set, pending, none
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc(AEPSharedStateResult) public class SharedStateResult : ObjectiveC.NSObject {
+  @objc final public let status: AEPCore.SharedStateStatus
+  @objc final public let value: [Swift.String : Any]?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc(AEPWrapperType) public enum WrapperType : Swift.Int, Swift.RawRepresentable {
+  case none = 0
+  case reactNative = 1
+  case flutter = 2
+  case cordova = 3
+  case unity = 4
+  case xamarin = 5
+  public typealias RawValue = Swift.String
+  public var rawValue: AEPCore.WrapperType.RawValue {
+    get
+  }
+  public init?(rawValue: AEPCore.WrapperType.RawValue)
+}
+extension AEPCore.AEPError : Swift.Equatable {}
+extension AEPCore.AEPError : Swift.Hashable {}
+extension AEPCore.AEPError : Swift.RawRepresentable {}
+extension AEPCore.EventHubError : Swift.Equatable {}
+extension AEPCore.EventHubError : Swift.Hashable {}
+extension AEPCore.PrivacyStatus : Swift.Equatable {}
+extension AEPCore.PrivacyStatus : Swift.Hashable {}
+extension AEPCore.SharedStateStatus : Swift.Equatable {}
+extension AEPCore.SharedStateStatus : Swift.Hashable {}
+extension AEPCore.SharedStateStatus : Swift.RawRepresentable {}
+extension AEPCore.WrapperType : Swift.Hashable {}

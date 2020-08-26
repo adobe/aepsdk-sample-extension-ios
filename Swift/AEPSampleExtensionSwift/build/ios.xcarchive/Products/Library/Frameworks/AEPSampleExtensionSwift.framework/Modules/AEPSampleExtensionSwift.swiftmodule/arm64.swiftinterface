@@ -1,0 +1,24 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AEPSampleExtensionSwift
+import AEPCore
+@_exported import AEPSampleExtensionSwift
+import Foundation
+import Swift
+@objc(AEPSampleExtension) public class SampleExtension : ObjectiveC.NSObject, AEPCore.Extension {
+  @objc public var name: Swift.String
+  @objc public var friendlyName: Swift.String
+  @objc public static let extensionVersion: Swift.String
+  @objc final public let runtime: AEPCore.ExtensionRuntime
+  @objc public var metadata: [Swift.String : Swift.String]?
+  @objc public func onRegistered()
+  @objc public func onUnregistered()
+  @objc required public init?(runtime: AEPCore.ExtensionRuntime)
+  @objc public func readyForEvent(_ event: AEPCore.Event) -> Swift.Bool
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc extension SampleExtension {
+  @objc(getSampleDataListenerExample:) public static func getSampleDataListenerExample(completion: @escaping (Swift.String?, AEPCore.AEPError) -> Swift.Void)
+  @objc(setterDataExample:) public static func setterDataExample(data: Swift.String)
+}

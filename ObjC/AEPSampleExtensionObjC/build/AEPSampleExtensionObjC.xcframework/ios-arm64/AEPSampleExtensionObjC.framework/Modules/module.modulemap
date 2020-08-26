@@ -1,0 +1,6 @@
+framework module AEPSampleExtensionObjC {
+  umbrella header "AEPSampleExtensionObjC.h"
+
+  export *
+  module * { export * }
+}

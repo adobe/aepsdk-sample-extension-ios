@@ -12,6 +12,24 @@ This repository contains a sample implementation of an iOS extension for the AEP
 
 ## Installation
 
+#### [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)
+
+```ruby
+# Podfile
+use_frameworks!
+
+# for app development, include all the following pods
+target 'YOUR_TARGET_NAME' do
+    # install the Swift extension
+    pod 'AEPSampleExtensionSwift', :git => 'git@github.com:adobe/aepsdk-sample-extension-ios.git', :branch => 'main'
+
+    # install the ObjC extension
+    pod 'AEPSampleExtensionObjC', :git => 'git@github.com:adobe/aepsdk-sample-extension-ios.git', :branch => 'main'    
+end
+```
+
+## Development
+
 #### Swift
 
 - Navigate to the `Swift` directory, and run the following command from terminal:
@@ -23,14 +41,12 @@ pod install
 - After the above command finishes, open the Xcode workspace:
 
   ```
-open AEPSampleApp.xcworkspace
+open AEPSampleExtensionSwift.xcworkspace
   ```
-
-- Run the `AEPSampleApp` target on the simulator of your choice.
 
 #### Objective-c
 
-- Navigate to the `Obj-C` directory, and run the following command from terminal:
+- Navigate to the `ObjC` directory, and run the following command from terminal:
 
   ```
 pod install
@@ -39,10 +55,8 @@ pod install
 - After the above command finishes, open the Xcode workspace:
 
   ```
-open AEPSampleAppObjC.xcworkspace
+open AEPSampleExtensionObjC.xcworkspace
   ```
-
-- Run the `AEPSampleAppObjC` target on the simulator of your choice.
 
 ## Contributing
 

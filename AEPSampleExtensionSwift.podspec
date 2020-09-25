@@ -1,4 +1,3 @@
-
 Pod::Spec.new do |s|
   s.name             = "AEPSampleExtensionSwift"
   s.version          = "0.0.1"

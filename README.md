@@ -1,5 +1,11 @@
 # AEP SDK Sample Extension for iOS
 
+## BETA ACKNOWLEDGEMENT
+
+AEP SDK Sample Extension for iOS is currently in Beta. Use of this code is by invitation only and not otherwise supported by Adobe. Please contact your Adobe Customer Success Manager to learn more.
+
+By using the Beta, you hereby acknowledge that the Beta is provided "as is" without warranty of any kind. Adobe shall have no obligation to maintain, correct, update, change, modify or otherwise support the Beta. You are advised to use caution and not to rely in any way on the correct functioning or performance of such Beta and/or accompanying materials.
+
 ## About this Project
 
 This repository contains a sample implementation of an iOS extension for the AEP SDK. Example implementations are provided for both Objective-c and Swift.
@@ -34,29 +40,29 @@ end
 
 - Navigate to the `Swift` directory, and run the following command from terminal:
 
-  ```
-pod install
-  ```
+    ```
+    pod install
+    ```
 
 - After the above command finishes, open the Xcode workspace:
 
-  ```
-open AEPSampleExtensionSwift.xcworkspace
-  ```
+    ```
+    open AEPSampleExtensionSwift.xcworkspace
+    ```
 
 #### Objective-c
 
 - Navigate to the `ObjC` directory, and run the following command from terminal:
 
-  ```
-pod install
-  ```
+    ```
+    pod install
+    ```
 
 - After the above command finishes, open the Xcode workspace:
 
-  ```
-open AEPSampleExtensionObjC.xcworkspace
-  ```
+    ```
+    open AEPSampleExtensionObjC.xcworkspace
+    ```
 
 ## Contributing
 

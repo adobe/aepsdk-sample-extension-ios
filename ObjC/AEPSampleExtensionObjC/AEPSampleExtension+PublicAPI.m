@@ -15,8 +15,7 @@
 
 +(void)getSampleDataListenerExample:(void (^)(NSString * _Nullable))completion {
     AEPEvent * event = [[AEPEvent alloc] initWithName:@"Get Sample Data" type:EVENT_TYPE_CUSTOM source:EVENT_SOURCE_RESPONSE_CONTENT data:nil];
-    
-    [AEPMobileCore dispatch:event responseCallback:^(AEPEvent * _Nullable responseEvent) {
+    [AEPMobileCore dispatch:event timeout:1 responseCallback:^(AEPEvent * _Nullable responseEvent) {
         if (!responseEvent) {
             completion(nil);
             return;

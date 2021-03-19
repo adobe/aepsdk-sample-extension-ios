@@ -15,6 +15,8 @@ import Foundation
 /// Enable easy setup for the input and verification of the output of an extension
 @objc(AEPTestableExtensionRuntime)
 public class TestableExtensionRuntime: NSObject, ExtensionRuntime {
+
+    
         
     public var listeners: [String: EventListener] = [:]
     @objc public var dispatchedEvents: [Event] = []
@@ -51,6 +53,20 @@ public class TestableExtensionRuntime: NSObject, ExtensionRuntime {
             return mockedSharedStates["\(extensionName)-\(id)"] ?? mockedSharedStates["\(extensionName)"]
         }
         return mockedSharedStates["\(extensionName)"]
+    }
+    
+    public func createXDMSharedState(data: [String : Any], event: Event?) {
+        
+    }
+    
+    public func createPendingXDMSharedState(event: Event?) -> SharedStateResolver {
+        return { data in
+            self.createdSharedStates += [data]
+        }
+    }
+    
+    public func getXDMSharedState(extensionName: String, event: Event?) -> SharedStateResult? {
+        return nil
     }
 
     public func unregisterExtension() {}
